@@ -6,8 +6,6 @@ Property Kit is a simple, convenient and EcmaScript 3 compliant property constru
 Supports Nodejs, Bower, AMD and loading as a global browser `<script>`.
 
 
-## Advantages
-
 
 ## Example usage
 

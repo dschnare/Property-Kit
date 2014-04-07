@@ -162,6 +162,8 @@ Supports Nodejs, Bower, AMD and loading as a global browser `<script>`.
     propertyKit.readwrite(getter, setter)
     // Aliases: propertyKit
 
-    propertyKit.readonly(value, key)
-    propertyKit.readonly(value, filter, key)
-    propertyKit.readonly(getter, setter, key)
+    propertyKit.readony(value)
+    propertyKit.readony(getter)
+    propertyKit.readony(value, key)
+    propertyKit.readony(value, filter, key)
+    propertyKit.readony(getter, setter, key)

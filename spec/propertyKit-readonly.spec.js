@@ -19,6 +19,12 @@ describe('propertyKit.readonly', function () {
     });
   });
 
+  it('should throw if a getter and key are given without a setter', function () {
+    expect(function () {
+      propertyKit.readonly(function () {}, {});
+    }).toThrowError();
+  });
+
   it('should create a simple readonly property', function () {
     var id = propertyKit.readonly(10);
 

@@ -25,6 +25,12 @@ describe('propertyKit.readwrite', function () {
     expect(window.propertyKit).toBe(window.propertyKit.readwrite);
   });
 
+  it('should throw if given a getter without a setter', function () {
+    expect(function () {
+      propertyKit(function () {});
+    }).toThrowError();
+  });
+
   it('should create a simple readwrite property', function () {
     var age = propertyKit.readwrite(45);
     var o = {};

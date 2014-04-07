@@ -9,11 +9,11 @@
   // propertyKit(value, filter)
   // propertyKit(getter, setter)
   function propertyKit(value, filter) {
-    filter = typeof filter === 'function' ? filter : passthru;
-    
     if (typeof value === 'function' && typeof filter !== 'function') {
       throw new Error('Cannot specify a custom getter with a custom setter.');
     }
+
+    filter = typeof filter === 'function' ? filter : passthru;
 
     return function (v) {
       if (arguments.length) {

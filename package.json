@@ -1,0 +1,20 @@
+{
+  "name": "Property-Kit",
+  "version": "0.0.1",
+  "description": "A simple, convenient and EcmaScript 3 compliant property construction API for JavaScript.",
+  "main": "constructor-kit.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dschnare/Property-Kit.git"
+  },
+  "devDependencies": {
+    "jasmine-core": "~2.0.0"
+  },
+  "author": "Darren Schnare <schnare.d@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dschnare/Property-Kit/issues"
+  },
+  "homepage": "https://github.com/dschnare/Property-Kit"
+}

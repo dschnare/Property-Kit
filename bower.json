@@ -1,0 +1,11 @@
+{
+  "name": "Property-Kit",
+  "version": "0.0.4",
+  "main": "property-kit.js",
+  "ignore": [
+    "spec/*",
+    "*.html",
+    "*.json",
+    "*.md"
+  ]
+}

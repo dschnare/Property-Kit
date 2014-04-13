@@ -1,6 +1,6 @@
 {
   "name": "Property-Kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple, convenient and ECMAScript 3 compliant property construction API for JavaScript.",
   "main": "constructor-kit.js",
   "scripts": {},

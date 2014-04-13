@@ -78,7 +78,7 @@
     exports.propertyKit = propertyKit;
   } else if (typeof define === 'function' && define.amd) {
     define([], function () {
-      return {pk: propertyKit, propertyKit: cpropertyKitk};
+      return {pk: propertyKit, propertyKit: propertyKitk};
     });
   } else {
     global.pk = propertyKit;

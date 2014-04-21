@@ -5,7 +5,13 @@ Property Kit is a simple, convenient and EcmaScript 3 compliant property constru
 
 Supports Nodejs, Bower, AMD and loading as a global browser `<script>`.
 
+## Install
 
+    bower install property-kit
+
+Or
+
+    npm install property-kit
 
 ## Example usage
 

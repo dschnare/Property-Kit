@@ -1,4 +1,4 @@
-(function (global, protocolKit) {
+(function (global) {
   'use strict';
 
   function passthru(v) {
@@ -75,15 +75,14 @@
   }
 
   if (typeof exports === 'object' && exports) {
-    protocolKit = require('protocol-kit');
     exports.pk = propertyKit;
     exports.propertyKit = propertyKit;
   } else if (typeof define === 'function' && define.amd) {
-    define(['protocol-kit'], function () {
+    define([], function () {
       return {pk: propertyKit, propertyKit: propertyKitk};
     });
   } else {
     global.pk = propertyKit;
     global.propertyKit = propertyKit;
   }
-}(this, this.protocolKit));
+}(this));

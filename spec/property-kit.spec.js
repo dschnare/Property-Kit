@@ -1,3 +1,5 @@
+var pk = require('../property-kit');
+
 describe('propertyKit', function () {
   beforeEach(function () {
     jasmine.addMatchers({
@@ -20,12 +22,14 @@ describe('propertyKit', function () {
   });
 
   it('should have the alias pk and propertyKit must be callable', function () {
-    expect(window.propertyKit).toBeCallable();
-    expect(window.propertyKit).toBe(window.pk);
+    expect(pk).toBeCallable();
+    // Legacy API
+    expect(pk).toBe(pk.pk);
+    expect(pk).toBe(pk.propertyKit);
   });
 
   it('should create a simple readwrite property when passing just the property value', function () {
-    var age = propertyKit(45);
+    var age = pk(45);
     var o = {};
 
     expect(age()).toEqual(45);
@@ -37,8 +41,8 @@ describe('propertyKit', function () {
 
   it('should create a property with a custom setter', function () {
     var o = {};
-    var shape = propertyKit({
-      value: 'none', 
+    var shape = pk({
+      value: 'none',
       set: function (oldValue, newValue) {
         return ['none', 'square', 'circle', 'rectangle'].indexOf(newValue) >= 0 ? newValue : oldValue;
       }
@@ -54,12 +58,12 @@ describe('propertyKit', function () {
   it('should create a property with custom getter and setter', function () {
     var value;
     var me = {
-      firstName: propertyKit('Darren'),
-      lastName: propertyKit('Schnare'),
-      fullName: propertyKit({
+      firstName: pk('Darren'),
+      lastName: pk('Schnare'),
+      fullName: pk({
         get: function () {
           return value = this.firstName() + ' ' + this.lastName();
-        }, 
+        },
         set: function (oldValue, newValue) {
           var parts = (newValue + '').split(' ');
           expect(oldValue).toBe(oldValue);

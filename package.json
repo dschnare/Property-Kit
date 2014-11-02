@@ -1,15 +1,22 @@
 {
   "name": "property-kit",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A simple, convenient and ECMAScript 3 compliant property construction API for JavaScript.",
-  "main": "constructor-kit.js",
-  "scripts": {},
+  "main": "property-kit.js",
+  "scripts": {
+    "test": "./node_modules/.bin/gulp"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/dschnare/Property-Kit.git"
   },
   "devDependencies": {
-    "jasmine-core": "~2.0.0"
+    "coffee-script": "^1.8.0",
+    "gulp": "^3.8.9",
+    "gulp-coffee": "^2.2.0",
+    "gulp-coffeelint": "^0.4.0",
+    "gulp-jasmine": "^1.0.1",
+    "gulp-util": "^3.0.1"
   },
   "author": "Darren Schnare <schnare.d@gmail.com>",
   "license": "MIT",

@@ -1,88 +1,84 @@
-(function (global) {
-  'use strict';
+'use strict';
+var noop, pk;
 
-  function passthru(v) {
-    return v;
-  }
+noop = function(v) {
+  return v;
+};
 
-  function noop() {}
-
-  // Property descriptor: {value, get, set, [key, keys:{get, set}]}
-  // or just the value in place of the descriptor.
-  function propertyKit(descriptor) {
-    var value, get, set, keys, computed;
-
-    if (descriptor.constructor !== Object) {
-      value = descriptor;
-      get = function (value) { return value; };
-      set = function (value, newValue) { return newValue; };
-      keys = {};
-    } else {
-      keys = {
-       get: descriptor.key || (descriptor.keys ? descriptor.keys.get : null),
-       set: descriptor.key || (descriptor.keys ? descriptor.keys.set : null)
-      };
-
-      value = descriptor.value;
-      get = descriptor.get || function (value) { return value; };
-      set = descriptor.set || function (value, newValue) { return newValue; };
-      computed = value === undefined;
-    }
-
-    // get()
-    // get:locked({key})
-    // set(value)
-    // set:locked(value, {key})
-    return function (v, opts) {
-      opts = opts || (v && v.key ? v : {});
-
-      if (arguments.length === 0) {
-        if (keys.get) {
-          throw new Error('Cannot get a locked property.');
-        } else {
-          return computed ? value = get.call(this, value) : get.call(this, value);
-        }
-      } else if (arguments.length === 1) {
-        if (keys.get && opts.key) {
-          if (keys.get === opts.key) {
-            return computed ? value = get.call(this, value) : get.call(this, value);
-          } else {
-            throw new Error('Cannot get a locked property.');
-          }
-        } else if (keys.set) {
-          throw new Error('Cannot set a locked property.');
-        } else {
-          if (computed && value === undefined) value = get.call(this, value);
-          value = set.call(this, value, v);
-          return this;
-        }
-      } else if (arguments.length === 2) {
-        if (keys.set) {
-          if (keys.set === opts.key) {
-            if (computed && value === undefined) value = get.call(this, value);
-            value = set.call(this, value, v);
-            return this;
-          } else {
-            throw new Error('Cannot set a locked property.');
-          }
-        } else {
-          if (computed && value === undefined) value = get.call(this, value);
-          value = set.call(this, value, v);
-          return this;
-        }
-      }
+pk = function(descriptor) {
+  var computed, get, keys, set, value, _ref, _ref1;
+  if (descriptor.constructor !== Object) {
+    value = descriptor;
+    get = noop;
+    set = function(value, newValue) {
+      return newValue;
     };
-  }
-
-  if (typeof exports === 'object' && exports) {
-    exports.pk = propertyKit;
-    exports.propertyKit = propertyKit;
-  } else if (typeof define === 'function' && define.amd) {
-    define([], function () {
-      return {pk: propertyKit, propertyKit: propertyKitk};
-    });
+    keys = {};
   } else {
-    global.pk = propertyKit;
-    global.propertyKit = propertyKit;
+    keys = {
+      get: descriptor.key || ((_ref = descriptor.keys) != null ? _ref.get : void 0),
+      set: descriptor.key || ((_ref1 = descriptor.keys) != null ? _ref1.set : void 0)
+    };
+    value = descriptor.value;
+    get = descriptor.get || noop;
+    set = descriptor.set || function(value, newValue) {
+      return newValue;
+    };
+    computed = value === void 0;
   }
-}(this));
+  return function(v, opts) {
+    opts = opts || ((v != null ? v.key : void 0) != null ? v : void 0) || {};
+    if (arguments.length === 0) {
+      if (keys.get) {
+        throw new Error('Cannot get a locked property.');
+      }
+      if (computed) {
+        return value = get.call(this, value);
+      }
+      return get.call(this, value);
+    } else if (arguments.length === 1) {
+      if (keys.get && opts.key) {
+        if (keys.get === opts.key) {
+          if (computed) {
+            return value = get.call(this, value);
+          }
+          return get.call(this, value);
+        } else {
+          throw new Error('Cannot get a locked property.');
+        }
+      } else if (keys.set) {
+        throw new Error('Cannot set a locked property.');
+      } else {
+        if (computed) {
+          value = get.call(this, value);
+        }
+        value = set.call(this, value, v);
+        return this;
+      }
+    } else if (arguments.length === 2) {
+      if (keys.set) {
+        if (keys.set === opts.key) {
+          if (computed && value === void 0) {
+            value = get.call(this, value);
+          }
+          value = set.call(this, value, v);
+          return this;
+        } else {
+          throw new Error('Cannot set a locked property.');
+        }
+      } else {
+        if (computed && value === void 0) {
+          value = get.call(this, value);
+        }
+        value = set.call(this, value, v);
+        return this;
+      }
+    }
+  };
+};
+
+pk.pk = pk;
+
+pk.propertyKit = pk;
+
+module.exports = pk;

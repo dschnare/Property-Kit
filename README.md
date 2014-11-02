@@ -13,6 +13,20 @@ Or
 
     npm install property-kit
 
+## Bower
+
+To use the component you will have to bundle the component using a tool like [Browserify](http://browserify.org).
+For example:
+
+*./public/modules/app.js*:
+
+    var pk = require('property-kit')
+    console.log(typeof pk)
+
+*command line*:
+
+    browserify -t debowerify ./public/modules/app.js > ./public/app.max.js
+
 ## Example usage
 
     // Create a property.

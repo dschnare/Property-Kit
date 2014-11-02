@@ -1,8 +1,10 @@
+var pk = require('../property-kit');
+
 describe('propertyKit locked properties', function () {
   it('should create a property with a locked setter', function () {
     var k = {};
-    var id = propertyKit({
-      value: 10, 
+    var id = pk({
+      value: 10,
       keys: { set: k }
     });
 
@@ -18,10 +20,10 @@ describe('propertyKit locked properties', function () {
   it('should create a property with custom getter and a locked setter', function () {
     var k = {};
     var me = {
-      firstName: propertyKit('Darren'),
-      lastName: propertyKit('Schnare'),
-      fullName: propertyKit({
-        keys: { set: k }, 
+      firstName: pk('Darren'),
+      lastName: pk('Schnare'),
+      fullName: pk({
+        keys: { set: k },
         get: function () {
           return this.firstName() + ' ' + this.lastName();
         }
@@ -38,7 +40,7 @@ describe('propertyKit locked properties', function () {
   it('should create a completely locked property (i.e. both getter and setter are locked)', function () {
     var key = {};
     var o = {};
-    var id = propertyKit({value: 0, key: key});
+    var id = pk({value: 0, key: key});
 
     expect(id).toThrowError();
     expect(function () {
@@ -53,13 +55,13 @@ describe('propertyKit locked properties', function () {
   it('should create a property with a custom getter and setter and locked setter', function () {
     var key = {};
     var me = {
-      firstName: propertyKit('Darren'),
-      lastName: propertyKit('Schnare'),
-      fullName: propertyKit({
-        keys: {set: key}, 
+      firstName: pk('Darren'),
+      lastName: pk('Schnare'),
+      fullName: pk({
+        keys: {set: key},
         get: function () {
           return this.firstName() + ' ' + this.lastName();
-        }, 
+        },
         set: function (oldValue, newValue) {
           var parts = (newValue + '').split(' ');
 
